@@ -1,0 +1,25 @@
+<launch>
+
+  <group ns="/">
+    <node pkg="aod" name="cod" type="cod"/>
+  </group>
+
+  <group ns="rod">
+    <node pkg="aod" name="analysis" type="analysis"/>
+  </group>
+  
+  <group ns="rod/camera">
+    <node pkg="aod" name="image_aggregation" type="image_aggregation"/>
+  </group>
+  
+  <group ns="rod/camera/rgb">
+    <node pkg="aod" name="color_calib" type="color_calib"/>
+    <node pkg="aod" name="STFP" type="stfp"/>
+  </group>
+  
+   <group ns="rod/camera/ir">
+    <node pkg="aod" name="STFP" type="stfp"/>
+    <node pkg="aod" name="image_proc" type="ir_image_proc"/>
+  </group>
+
+</launch>
