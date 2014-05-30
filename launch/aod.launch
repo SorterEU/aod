@@ -8,17 +8,17 @@
     <node pkg="aod" name="analysis" type="analysis"/>
   </group>
   
-  <group ns="rod/camera">
+  <!--<group ns="rod/camera">
     <node pkg="aod" name="image_aggregation" type="image_aggregation"/>
-  </group>
+  </group>-->
   
   <group ns="rod/camera/rgb">
     <node pkg="aod" name="color_calib" type="color_calib"/>
-    <node pkg="aod" name="STFP" type="stfp"/>
+    <node pkg="aod" name="STFP" type="rgb_stfp"/>
   </group>
   
    <group ns="rod/camera/ir">
-    <node pkg="aod" name="STFP" type="stfp"/>
+    <node pkg="aod" name="STFP" type="ir_stfp"/>
     <node pkg="aod" name="image_proc" type="ir_image_proc"/>
   </group>
 
