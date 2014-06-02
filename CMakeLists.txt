@@ -28,12 +28,14 @@ add_dependencies(color_calib aod_generate_messages_cpp)
 ## Rod analysis
 add_executable(analysis src/rod_analysis.cpp)
 target_link_libraries(analysis ${catkin_LIBRARIES})
+target_link_libraries(analysis node_class)
 add_dependencies(analysis aod_generate_messages_cpp)
 
 
 ## Cod
 add_executable(cod src/cod.cpp)
 target_link_libraries(cod ${catkin_LIBRARIES})
+target_link_libraries(cod node_class)
 add_dependencies(cod aod_generate_messages_cpp)
 
 

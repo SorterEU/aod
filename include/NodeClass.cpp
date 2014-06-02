@@ -104,6 +104,19 @@ void NodeClass::publishMessageStreamIN(ros::Publisher *pub_message)
 
 } // end publishMessageStreamIN()
 
+void NodeClass::publishMessageStreamOUT(ros::Publisher *pub_message)
+{
+
+	std_msgs::String msg;
+	std::stringstream ss;
+	ss << "StreamOUT ";
+	msg.data = ss.str();
+	ROS_INFO("%s", msg.data.c_str());
+
+	pub_message->publish(msg);
+
+} // end publishMessageStreamOUT()
+
 
 /*-------------------------------------------------------------------*/
 //Callbacks
@@ -157,3 +170,15 @@ void NodeClass::messageCallbackImageRectMono( const std_msgs::String::ConstPtr& 
 	publishMessageStreamIN(&_pub_message);
 
 } // end messageCallbackImageRectMono()
+
+
+void NodeClass::messageCallbackStreamIN( const std_msgs::String::ConstPtr& msg)
+{
+	ROS_INFO("message in messageCallbackTF");
+	//todo
+	/*
+	 * image_aggregation
+	*/
+	publishMessageStreamOUT(&_pub_message);
+
+} // end messageCallbackStreamIN()

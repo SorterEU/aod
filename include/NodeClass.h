@@ -27,6 +27,7 @@ public:
   void publishMessageTF(ros::Publisher *pub_message);
   void publishMessageImageRectMono(ros::Publisher *pub_message);
   void publishMessageStreamIN(ros::Publisher *pub_message);
+  void publishMessageStreamOUT(ros::Publisher *pub_message);
 
   //! Callback function for subscriber.
  
@@ -35,6 +36,7 @@ public:
   void messageCallbackImageCalibratedColor( const std_msgs::String::ConstPtr& msg);
   void messageCallbackTF( const std_msgs::String::ConstPtr& msg);
   void messageCallbackImageRectMono( const std_msgs::String::ConstPtr& msg);
+  void messageCallbackStreamIN( const std_msgs::String::ConstPtr& msg);
 
 };
 
