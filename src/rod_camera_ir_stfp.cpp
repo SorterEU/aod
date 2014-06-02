@@ -1,4 +1,4 @@
-#include "lib/NodeClass.h"
+#include "NodeClass.h"
 
 #include <sstream>
 
