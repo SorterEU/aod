@@ -5,7 +5,7 @@
 int main(int argc, char **argv)
 {
 
-  ros::init(argc, argv, "STFP");
+  ros::init(argc, argv, "rgb_STFP");
   ros::NodeHandle n;
 
   //Create a new NodeClass object

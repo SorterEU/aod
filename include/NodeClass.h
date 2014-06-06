@@ -37,6 +37,7 @@ public:
   void messageCallbackTF( const std_msgs::String::ConstPtr& msg);
   void messageCallbackImageRectMono( const std_msgs::String::ConstPtr& msg);
   void messageCallbackStreamIN( const std_msgs::String::ConstPtr& msg);
+  void messageCallbackStreamOUT( const std_msgs::String::ConstPtr& msg);
 
 };
 

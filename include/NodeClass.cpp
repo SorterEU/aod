@@ -142,9 +142,7 @@ void NodeClass::messageCallbackImageCalibratedColor( const std_msgs::String::Con
 {
 	ROS_INFO("message in messageCallbackImageCalibratedColor");
 	//todo
-	/*
-	 * image_aggregation
-	*/
+	
 	publishMessageStreamIN(&_pub_message);
 
 } // end messageCallbackImageCalibratedColor()
@@ -153,9 +151,7 @@ void NodeClass::messageCallbackTF( const std_msgs::String::ConstPtr& msg)
 {
 	ROS_INFO("message in messageCallbackTF");
 	//todo
-	/*
-	 * image_aggregation
-	*/
+	
 	publishMessageStreamIN(&_pub_message);
 
 } // end messageCallbackTF()
@@ -164,9 +160,7 @@ void NodeClass::messageCallbackImageRectMono( const std_msgs::String::ConstPtr& 
 {
 	ROS_INFO("message in messageCallbackImageRectMono");
 	//todo
-	/*
-	 * image_aggregation
-	*/
+	
 	publishMessageStreamIN(&_pub_message);
 
 } // end messageCallbackImageRectMono()
@@ -176,9 +170,15 @@ void NodeClass::messageCallbackStreamIN( const std_msgs::String::ConstPtr& msg)
 {
 	ROS_INFO("message in messageCallbackTF");
 	//todo
-	/*
-	 * image_aggregation
-	*/
+	
 	publishMessageStreamOUT(&_pub_message);
 
 } // end messageCallbackStreamIN()
+
+void NodeClass::messageCallbackStreamOUT( const std_msgs::String::ConstPtr& msg)
+{
+	ROS_INFO("message in messageCallbackStreamOUT");
+	//todo
+	
+
+} // end messageCallbackStreamOUT()
