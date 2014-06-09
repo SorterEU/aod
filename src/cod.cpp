@@ -1,6 +1,7 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "NodeClass.h"
+#include "sorter_msgs/streamOUT.h"
 
 
 int main(int argc, char **argv)

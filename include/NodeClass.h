@@ -5,6 +5,7 @@
 #include "ros/ros.h"
 #include "ros/time.h"
 #include "std_msgs/String.h"
+#include "sorter_msgs/streamOUT.h"
 
 using std::string;
 
@@ -37,7 +38,7 @@ public:
   void messageCallbackTF( const std_msgs::String::ConstPtr& msg);
   void messageCallbackImageRectMono( const std_msgs::String::ConstPtr& msg);
   void messageCallbackStreamIN( const std_msgs::String::ConstPtr& msg);
-  void messageCallbackStreamOUT( const std_msgs::String::ConstPtr& msg);
+  void messageCallbackStreamOUT( const sorter_msgs::streamOUT::ConstPtr& msg);
 
 };
 

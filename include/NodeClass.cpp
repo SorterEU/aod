@@ -107,11 +107,11 @@ void NodeClass::publishMessageStreamIN(ros::Publisher *pub_message)
 void NodeClass::publishMessageStreamOUT(ros::Publisher *pub_message)
 {
 
-	std_msgs::String msg;
+	sorter_msgs::streamOUT msg;
 	std::stringstream ss;
 	ss << "StreamOUT ";
-	msg.data = ss.str();
-	ROS_INFO("%s", msg.data.c_str());
+	msg.message = ss.str();
+	ROS_INFO("%s", msg.message.c_str());
 
 	pub_message->publish(msg);
 
@@ -175,9 +175,10 @@ void NodeClass::messageCallbackStreamIN( const std_msgs::String::ConstPtr& msg)
 
 } // end messageCallbackStreamIN()
 
-void NodeClass::messageCallbackStreamOUT( const std_msgs::String::ConstPtr& msg)
+void NodeClass::messageCallbackStreamOUT( const sorter_msgs::streamOUT::ConstPtr& msg)
 {
-	ROS_INFO("message in messageCallbackStreamOUT");
+	
+	ROS_INFO("message in messageCallbackStreamOUT -> message %s", msg->message.c_str());
 	//todo
 	
 

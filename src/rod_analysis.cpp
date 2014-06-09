@@ -1,6 +1,7 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "NodeClass.h"
+#include "sorter_msgs/streamOUT.h"
 
 #include <sstream>
 
@@ -21,7 +22,7 @@ int main(int argc, char **argv)
    NodeClass *node_class = new NodeClass();
 
    // Create a publisher and name the topic.
-  node_class->_pub_message = n.advertise<std_msgs::String>("/rod/analysis/streamOUT", 1000);
+  node_class->_pub_message = n.advertise<sorter_msgs::streamOUT>("/rod/analysis/streamOUT", 1000);
 
   // Tell ROS how fast to run this node.
   ros::Rate loop_rate(10);
