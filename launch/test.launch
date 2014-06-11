@@ -1,0 +1,37 @@
+<launch>
+	
+	<group ns="rod/camera/rgb">
+		<node pkg="prosilica_camera" name="driver_rgb" type="prosilica_node">
+			<remap from="camera" to="/rod/camera/rgb" />
+			<param name="ip_address" type="str" value="192.168.50.2" />
+		</node>
+	</group>
+
+	<group ns="rod/camera/ir">
+		<node pkg="prosilica_camera" name="driver_ir" type="prosilica_node">
+			<remap from="camera" to="/rod/camera/ir" />
+			<param name="ip_address" type="str" value="192.168.51.2" />
+		</node>
+	</group>
+
+  <group ns="rod/camera/ir">
+    <node pkg="image_proc" name="image_proc_ir" type="image_proc"/>
+  </group>
+  
+  <group ns="rod/camera/rgb">
+    <node pkg="image_proc" name="image_proc_rgb" type="image_proc"/>
+  </group>
+  
+  <group ns="/">
+	<node pkg="image_view" name="image_view_rgb" type="image_view">
+		<remap from="image" to="/rod/camera/rgb/image_color" />
+	</node>
+  </group>
+  
+  <group ns="/">
+	<node pkg="image_view" name="image_view_ir" type="image_view">
+		<remap from="image" to="/rod/camera/ir/image_mono" />
+	</node>
+  </group>
+
+</launch>

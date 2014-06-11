@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(aod)
 
 ## Find catkin and any catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg sorter_msgs)
+find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg sorter_msgs image_proc)
 
 ## Generate added messages and services
 #generate_messages(DEPENDENCIES std_msgs sorter_msgs )
