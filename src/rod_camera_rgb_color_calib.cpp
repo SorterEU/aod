@@ -17,7 +17,10 @@ int main(int argc, char **argv)
 
   // Tell ROS how fast to run this node.
   ros::Rate loop_rate(10);
-
+  
+  //subscribes
+  ros::Subscriber sub_image_proc = n.subscribe("/rod/camera/rgb/image_color", 1000, &NodeClass::messageCallbackImageRectColor, node_class);
+  
   //test
   while (ros::ok())
   {

@@ -32,7 +32,7 @@ int main(int argc, char **argv)
   ros::Subscriber sub_color_calib = n.subscribe("/rod/camera/rgb/image_calibrated_color", 1000, &NodeClass::messageCallbackImageCalibratedColor, node_class);
   ros::Subscriber sub_rgb_STFP= n.subscribe("/TF", 1000, &NodeClass::messageCallbackTF, node_class);
   ros::Subscriber sub_ir_STFP= n.subscribe("/TF", 1000, &NodeClass::messageCallbackTF, node_class);
-  ros::Subscriber sub_image_proc= n.subscribe("/rod/camera/ir/image_rect_mono", 1000, &NodeClass::messageCallbackImageRectMono, node_class);
+  ros::Subscriber sub_image_proc= n.subscribe("/rod/camera/ir/image_mono", 1000, &NodeClass::messageCallbackImageRectMono, node_class);
   
   
   ros::spin();

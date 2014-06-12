@@ -28,10 +28,32 @@
 	</node>
   </group>
   
+  
   <group ns="/">
 	<node pkg="image_view" name="image_view_ir" type="image_view">
 		<remap from="image" to="/rod/camera/ir/image_mono" />
 	</node>
   </group>
+  
+  <!-- Aggregation -->
+  
+  <group ns="rod/camera">
+    <node pkg="aod" name="image_aggregation" type="image_aggregation"/>
+  </group>
+  
+  <!-- Color calib -->
+   <group ns="rod/camera/rgb">
+    <node pkg="aod" name="color_calib" type="color_calib"/>
+   </group>
+   
+   <!-- Cod -->
+  <group ns="/">
+    <node pkg="aod" name="cod" type="cod"/>
+  </group>
 
+  
+   <!-- Analysis -->
+  <group ns="rod">
+    <node pkg="aod" name="analysis" type="analysis"/>
+  </group> 
 </launch>

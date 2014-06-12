@@ -6,7 +6,7 @@
 #include "ros/time.h"
 #include "std_msgs/String.h"
 #include "sorter_msgs/streamOUT.h"
-
+#include "sensor_msgs/Image.h"
 using std::string;
 
 class NodeClass
@@ -36,9 +36,10 @@ public:
   void messageCallback( const std_msgs::String::ConstPtr& msg);
   void messageCallbackImageCalibratedColor( const std_msgs::String::ConstPtr& msg);
   void messageCallbackTF( const std_msgs::String::ConstPtr& msg);
-  void messageCallbackImageRectMono( const std_msgs::String::ConstPtr& msg);
+  void messageCallbackImageRectMono( const sensor_msgs::Image::ConstPtr& msg);
   void messageCallbackStreamIN( const std_msgs::String::ConstPtr& msg);
   void messageCallbackStreamOUT( const sorter_msgs::streamOUT::ConstPtr& msg);
+  void messageCallbackImageRectColor( const sensor_msgs::Image::ConstPtr& msg);
 
 };
 

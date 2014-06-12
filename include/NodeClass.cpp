@@ -156,7 +156,7 @@ void NodeClass::messageCallbackTF( const std_msgs::String::ConstPtr& msg)
 
 } // end messageCallbackTF()
 
-void NodeClass::messageCallbackImageRectMono( const std_msgs::String::ConstPtr& msg)
+void NodeClass::messageCallbackImageRectMono( const sensor_msgs::Image::ConstPtr& msg)
 {
 	ROS_INFO("message in messageCallbackImageRectMono");
 	//todo
@@ -183,3 +183,12 @@ void NodeClass::messageCallbackStreamOUT( const sorter_msgs::streamOUT::ConstPtr
 	
 
 } // end messageCallbackStreamOUT()
+
+void NodeClass::messageCallbackImageRectColor( const sensor_msgs::Image::ConstPtr& msg)
+{
+	
+	ROS_INFO("sensor_msgs::Image");
+	//todo
+	
+
+} // end messageCallbackImageRectColor()
