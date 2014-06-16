@@ -34,7 +34,7 @@ public:
  
   //void messageCallback(const node_example::node_example_data::ConstPtr &msg);
   void messageCallback( const std_msgs::String::ConstPtr& msg);
-  void messageCallbackImageCalibratedColor( const std_msgs::String::ConstPtr& msg);
+  void messageCallbackImageCalibratedColor( const sensor_msgs::Image::ConstPtr& msg);
   void messageCallbackTF( const std_msgs::String::ConstPtr& msg);
   void messageCallbackImageRectMono( const sensor_msgs::Image::ConstPtr& msg);
   void messageCallbackStreamIN( const std_msgs::String::ConstPtr& msg);

@@ -53,12 +53,11 @@ void NodeClass::publishMessage(ros::Publisher *pub_message)
 
 void NodeClass::publishMessageImageCalibratedColor(ros::Publisher *pub_message)
 {
-
-	std_msgs::String msg;
+	sensor_msgs::Image msg;
 	std::stringstream ss;
-	ss << "ImageCalibratedColor ";
-	msg.data = ss.str();
-	ROS_INFO("%s", msg.data.c_str());
+	ss << "encoding ";
+	msg.encoding = ss.str();
+	ROS_INFO("%s", msg.encoding.c_str());
 
 	pub_message->publish(msg);	
 	
@@ -138,7 +137,7 @@ void NodeClass::messageCallback( const std_msgs::String::ConstPtr& msg)
   //ROS_INFO("sum of a + b = %d", a + b);
 } // end messageCallback()
 
-void NodeClass::messageCallbackImageCalibratedColor( const std_msgs::String::ConstPtr& msg)
+void NodeClass::messageCallbackImageCalibratedColor( const sensor_msgs::Image::ConstPtr& msg)
 {
 	ROS_INFO("message in messageCallbackImageCalibratedColor");
 	//todo
