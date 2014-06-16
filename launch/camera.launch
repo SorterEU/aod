@@ -1,19 +1,24 @@
 <launch>
 
   <arg name="use_real_camera" default="true" />
-
+  
+<!--                         Real Camera                       -->
   <group if="$(arg use_real_camera)">
     <!-- tutaj uruchamiane są węzły związane z rzeczywistą kamerą, kalibracją obrazów i ich podziałem na pojedyncze jabłka -->
+    <include file="$(find aod)/launch/real_camera.launch"/>
   </group>
 
+
+<!--                           Simulated Camera                              -->
   <group unless="$(arg use_real_camera)">
-    <!-- tutaj uruchamiany jest węzeł wczytujący obrazki z bazy danych -->
+    <!-- tutaj uruchamiany jest węzeł wczytujący obrazki z bazy danych -->  
     <include file="$(find img_tools)/launch/sequence_publisher.launch">
-      <arg name="path" value="$(arg sequence_path)" />
-      <arg name="rate" value="0.2" />
-      <arg name="ir_topic" value="image_ir" />
-      <arg name="color_topic" value="image_color" />
-    </include>
+		<arg name="path" value="$(arg sequence_path)" />
+		<arg name="rate" value="0.2" />
+		<arg name="ir_topic" value="/rod/camera/ir/image_mono" />
+		<arg name="color_topic" value="/rod/camera/rgb/image_calibrated_color" />
+	</include>
+	<include file="$(find aod)/launch/simulated_camera.launch"/>
   </group>
 
 </launch>

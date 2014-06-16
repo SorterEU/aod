@@ -1,0 +1,33 @@
+<launch>
+		
+	<!-- Image View RGB -->
+	<group ns="/">
+		<node pkg="image_view" name="image_view_rgb" type="image_view">
+			<remap from="image" to="/rod/camera/rgb/image_calibrated_color" />
+		</node>
+	</group>
+  
+	<!-- Image View IR -->
+	<group ns="/">
+		<node pkg="image_view" name="image_view_ir" type="image_view">
+			<remap from="image" to="/rod/camera/ir/image_mono" />
+		</node>
+	</group>
+	
+	<!-- Aggregation -->
+	<group ns="rod/camera">
+		<node pkg="aod" name="image_aggregation" type="image_aggregation"/>
+	</group>
+	
+	<!-- Cod -->
+	<group ns="/">
+		<node pkg="aod" name="cod" type="cod"/>
+	</group>
+
+  
+	<!-- Analysis -->
+	<group ns="rod">
+		<node pkg="aod" name="analysis" type="analysis"/>
+	</group> 
+
+</launch>

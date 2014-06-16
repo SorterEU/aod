@@ -1,6 +1,6 @@
 <launch>
 	
-	<!-- Camera RGB Node -->
+   <!-- Camera RGB Node -->
 	<group ns="rod/camera/rgb">
 		<node pkg="prosilica_camera" name="driver_rgb" type="prosilica_node">
 			<remap from="camera" to="/rod/camera/rgb" />
