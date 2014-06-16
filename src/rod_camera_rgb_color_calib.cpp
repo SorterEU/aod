@@ -13,7 +13,7 @@ int main(int argc, char **argv)
   NodeClass *node_class = new NodeClass();
 
   // Create a publisher and name the topic.
-  ros::Publisher pub_message = n.advertise<std_msgs::String>("/rod/camera/rgb/image_calibrated_color", 1000);
+  node_class->_pub_message = n.advertise<sensor_msgs::Image>("/rod/camera/rgb/image_calibrated_color", 1000);
 
   // Tell ROS how fast to run this node.
   ros::Rate loop_rate(10);
@@ -21,13 +21,7 @@ int main(int argc, char **argv)
   //subscribes
   ros::Subscriber sub_image_proc = n.subscribe("/rod/camera/rgb/image_color", 1000, &NodeClass::messageCallbackImageRectColor, node_class);
   
-  //test
-  while (ros::ok())
-  {
-	node_class->publishMessageImageCalibratedColor(&pub_message);
-    ros::spinOnce();
-    loop_rate.sleep();
-  }
+  ros::spin();
 
 
   return 0;
