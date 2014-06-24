@@ -1,0 +1,19 @@
+<launch>
+  
+  <!-- Aggregation -->
+  <group ns="rod/camera">
+    <node pkg="aod" name="image_aggregation" type="image_aggregation"/>
+  </group>
+   
+   <!-- Cod -->
+  <group ns="/">
+    <node pkg="aod" name="cod" type="cod"/>
+  </group>
+
+  
+   <!-- Analysis -->
+  <group ns="rod">
+    <node pkg="aod" name="analysis" type="analysis"/>
+  </group> 
+  
+</launch>

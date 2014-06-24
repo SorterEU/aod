@@ -1,0 +1,31 @@
+<launch>
+	
+	<!-- Camera RGB Node -->
+	<group ns="rod/camera/rgb">
+		<node pkg="prosilica_camera" name="driver_rgb" type="prosilica_node">
+			<remap from="camera" to="/rod/camera/rgb" />
+			<param name="ip_address" type="str" value="192.168.50.2" />
+		</node>
+	</group>
+
+
+  <!-- Image Proc RGB -->
+  <group ns="rod/camera/rgb">
+    <node pkg="image_proc" name="image_proc_rgb" type="image_proc"/>
+  </group>
+  
+  <!-- Image View RGB -->
+  <group ns="/">
+	<node pkg="image_view" name="image_view_rgb" type="image_view">
+		<remap from="image" to="/rod/camera/rgb/image_color" />
+	</node>
+  </group>
+
+  <!-- Color calib -->
+  <group ns="rod/camera/rgb">
+    <node pkg="aod" name="color_calib" type="color_calib"/>
+   </group>
+   
+  
+  
+</launch>

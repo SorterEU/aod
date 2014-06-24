@@ -1,0 +1,9 @@
+<launch>
+
+  <group>
+    <include file="$(find aod)/launch/analysis.launch"/>
+    <include file="$(find aod)/launch/IR.launch"/>
+    <include file="$(find aod)/launch/RGB.launch"/>
+  </group>
+
+</launch>
