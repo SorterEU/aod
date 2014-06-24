@@ -7,40 +7,10 @@
 #include "std_msgs/String.h"
 #include "sorter_msgs/streamOUT.h"
 #include "sensor_msgs/Image.h"
+#include <dynamic_reconfigure/server.h>
+#include <sstream>
 using std::string;
 
-class NodeClass
-{
-public:
-
-	ros::Publisher  _pub_message;
-  //! Constructor.
-	NodeClass();
-
-  //! Destructor.
-  ~NodeClass();
-
-  //! Publish the message.
-  void publishMessage();
-
-  void publishMessage(ros::Publisher *pub_message);
-  void publishMessageImageCalibratedColor(ros::Publisher *pub_message);
-  void publishMessageTF(ros::Publisher *pub_message);
-  void publishMessageImageRectMono(ros::Publisher *pub_message);
-  void publishMessageStreamIN(ros::Publisher *pub_message);
-  void publishMessageStreamOUT(ros::Publisher *pub_message);
-
-  //! Callback function for subscriber.
- 
-  //void messageCallback(const node_example::node_example_data::ConstPtr &msg);
-  void messageCallback( const std_msgs::String::ConstPtr& msg);
-  void messageCallbackImageCalibratedColor( const sensor_msgs::Image::ConstPtr& msg);
-  void messageCallbackTF( const std_msgs::String::ConstPtr& msg);
-  void messageCallbackImageRectMono( const sensor_msgs::Image::ConstPtr& msg);
-  void messageCallbackStreamIN( const std_msgs::String::ConstPtr& msg);
-  void messageCallbackStreamOUT( const sorter_msgs::streamOUT::ConstPtr& msg);
-  void messageCallbackImageRectColor( const sensor_msgs::Image::ConstPtr& msg);
-
-};
 
 #endif // SR_NODE_CLASS_H
+	
