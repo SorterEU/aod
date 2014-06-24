@@ -1,7 +1,31 @@
-#include "ros/ros.h"
-#include "std_msgs/String.h"
+
 #include "NodeClass.h"
-#include "sorter_msgs/streamOUT.h"
+#include <aod/CodConfig.h>
+
+
+class Cod{
+public:
+	Cod(){
+		sub_ = nh_.subscribe("/rod/analysis/streamOUT", 1000, &Cod::messageCallbackStreamOUT, this);
+	}
+	~Cod(){}
+	
+	void callback(aod::CodConfig &config, uint32_t level)
+	{ 
+	 
+	  ROS_INFO("Reconfigure request, parameter: %f",
+	           config.parameter);
+	}
+
+	void messageCallbackStreamOUT( const sorter_msgs::streamOUT::ConstPtr& msg)
+	{
+		ROS_INFO("StreamOut received, message: %s", msg->message.c_str());
+	}
+private:
+	ros::NodeHandle nh_;
+	ros::Subscriber sub_;
+};
+
 
 
 int main(int argc, char **argv)
@@ -10,13 +34,20 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "cod");
   ros::NodeHandle n;
   
-  //Create a new NodeClass object
-  NodeClass *node_class = new NodeClass();
-   
-  //subscribes
-  ros::Subscriber sub = n.subscribe("/rod/analysis/streamOUT", 1000, &NodeClass::messageCallbackStreamOUT, node_class);
-
+  dynamic_reconfigure::Server<aod::CodConfig> srv;
+  dynamic_reconfigure::Server<aod::CodConfig>::CallbackType f;
+  
+  Cod cod_;
+  
+  f = boost::bind(&Cod::callback, &cod_, _1, _2);
+  srv.setCallback(f);
+  ros::Rate loop_rate(10);
+  
+  ROS_INFO("Starting to spin...");
   ros::spin();
 
   return 0;
 }
+
+
+
