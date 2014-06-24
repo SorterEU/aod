@@ -9,8 +9,6 @@
 #include "sensor_msgs/Image.h"
 #include <dynamic_reconfigure/server.h>
 #include <sstream>
-using std::string;
-
 
 #endif // SR_NODE_CLASS_H
 	
