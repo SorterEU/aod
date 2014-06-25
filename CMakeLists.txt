@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 2.8.3)
 project(aod)
 
 ## Find catkin and any catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs sorter_msgs image_proc sensor_msgs dynamic_reconfigure cv_bridge)
+find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs sorter_msgs image_proc sensor_msgs dynamic_reconfigure cv_bridge image_transport)
+find_package(OpenCV)
 
 ## Generate dynamic reconfigure
 generate_dynamic_reconfigure_options(
@@ -22,13 +23,14 @@ catkin_package(
 
 ## Build talker and listener
 include_directories(include ${catkin_INCLUDE_DIRS})
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 
 ## Rod camera rgb color calib
 add_executable(color_calib src/rod_camera_rgb_color_calib.cpp)
 add_dependencies(color_calib color_calib_generate_messages_cpp ${PROJECT_NAME}_gencfg)
-target_link_libraries(color_calib ${catkin_LIBRARIES})
 add_library(ColorCalibrationDll src/color_calibration/ColorCalibrationDll.cpp)
+target_link_libraries(color_calib ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ColorCalibrationDll)
 
 
 ## Rod analysis
