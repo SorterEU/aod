@@ -18,7 +18,7 @@ using namespace std;
 //template <typename T> string tostr(const T& t) { ostringstream os; os<<t; return os.str(); }
 
 namespace myColorCalib {
-void col_cal_compute( cv::Mat src,cv::Mat& out,float& calib_corr_R,float& calib_corr_G,float& calib_corr_B,bool AutoCalib_On)
+void col_cal_compute( cv::Mat src,cv::Mat& out,double& calib_corr_R,double& calib_corr_G,double& calib_corr_B,bool AutoCalib_On)
 {
   if( AutoCalib_On==true )
     {
@@ -64,7 +64,7 @@ void col_cal_compute( cv::Mat src,cv::Mat& out,float& calib_corr_R,float& calib_
 
 }
 
-void col_cal_use( cv::Mat src,cv::Mat& out,float calib_corr_R,float calib_corr_G,float calib_corr_B,bool AutoCalib_On)
+void col_cal_use( cv::Mat src,cv::Mat& out,double calib_corr_R,double calib_corr_G,double calib_corr_B,bool AutoCalib_On)
 {
   vector<Mat> bgr_picture(3);
   if( AutoCalib_On==true )
