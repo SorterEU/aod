@@ -10,8 +10,8 @@
 
 
 namespace myColorCalib {
-void col_cal_compute(cv::Mat src,cv::Mat& out,float& calib_corr_R,float& calib_corr_G,float& calib_corr_B,bool AutoCalib_On);
-void col_cal_use(cv::Mat src,cv::Mat& out,float calib_corr_R,float calib_corr_G,float calib_corr_B,bool AutoCalib_On);
+void col_cal_compute(cv::Mat src,cv::Mat& out,double& calib_corr_R,double& calib_corr_G,double& calib_corr_B,bool AutoCalib_On);
+void col_cal_use(cv::Mat src,cv::Mat& out,double calib_corr_R,double calib_corr_G,double calib_corr_B,bool AutoCalib_On);
 }
 
 

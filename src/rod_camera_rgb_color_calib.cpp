@@ -2,29 +2,48 @@
 #include <aod/ColorCalibConfig.h>
 #include "ColorCalibrationDll_include.h"// Color Calibration
 
+
 class ColorCalib {
 public:
-	ColorCalib(){
+    double calib_corr_R, calib_corr_G, calib_corr_B;
+    bool auto_calib;
+    double calib_correction;
+    double comp_calib_corr_R, comp_calib_corr_G, comp_calib_corr_B;
+    ColorCalib() {
         sub_=nh_.subscribe("/rod/camera/rgb/image_color", 1, &ColorCalib::messageCallbackImageRectColor, this);
 		pub_message_ = nh_.advertise<sensor_msgs::Image>("/rod/camera/rgb/image_calibrated_color", 1000);
 	}
-	~ColorCalib(){}
+    ~ColorCalib(){}
 	
-	void callback(aod::ColorCalibConfig &config, uint32_t level)
+    void callback(aod::ColorCalibConfig &config, uint32_t level)
 	{ 
-	 
+        if(config.auto_calib==false)
+        {
+            config.calib_corr_R=comp_calib_corr_R;
+            config.calib_corr_G=comp_calib_corr_G;
+            config.calib_corr_B=comp_calib_corr_B;
+        }
+        calib_corr_R = config.calib_corr_R;
+        calib_corr_G = config.calib_corr_G;
+        calib_corr_B = config.calib_corr_B;
+        auto_calib = config.auto_calib;
+        calib_correction = config.calib_correction;
 	  ROS_INFO("Reconfigure request, parameter: %f",
-               config.parameter);
+               config.calib_corr_R,
+               config.calib_corr_R,
+               config.calib_corr_R,
+               config.auto_calib,
+               config.calib_correction);
 	}
-	
-    void messageCallbackImageRectColor( const sensor_msgs::ImageConstPtr& msg)//const sensor_msgs::Image::ConstPtr& msg)
+
+
+    void messageCallbackImageRectColor( const sensor_msgs::Image::ConstPtr& msg)//const sensor_msgs::ImageConstPtr& msg)
 	{
         ROS_INFO("sensor_msgs::Image");
         //todo
 
-
         cv::Mat src;
-        float calib_corr_R, calib_corr_G, calib_corr_B;
+        //float calib_corr_R, calib_corr_G, calib_corr_B;
         cv_bridge::CvImagePtr cv_ptr;
         try
         {
@@ -38,32 +57,17 @@ public:
 
         src=cv_ptr->image;
 
-            //Test
-    //    cv::Mat roi(src, cv::Rect(10,10,100,100));
-    //    cv::Mat roi2(src, cv::Rect(100,100,900,800));
-    //    cv::namedWindow("ROI"); //create a display window
-    //    cv::imshow("ROI", roi2);
-    //    cv::waitKey(1);
-            //Test
+        myColorCalib::col_cal_compute(src, cv_ptr->image, comp_calib_corr_R, comp_calib_corr_G, comp_calib_corr_B, auto_calib);//true);
+        myColorCalib::col_cal_use(src,cv_ptr->image,calib_corr_R*calib_correction,calib_corr_G*calib_correction,calib_corr_B*calib_correction, auto_calib);//true);
 
-        myColorCalib::col_cal_compute(src, cv_ptr->image, calib_corr_R, calib_corr_G, calib_corr_B,true);
-        myColorCalib::col_cal_use(src,cv_ptr->image,calib_corr_R*0.6,calib_corr_G*0.6,calib_corr_B*0.6,true);
-
-    //        //Test
-    //    cv::namedWindow("Calibrated"); //create a display window
-    //    cv::imshow("Calibrated", cv_ptr->image);
-    //    cv::waitKey(3);//3
-    //        //~Test
-
-//        publishMessageImageCalibratedColor(&pub_message_,*(cv_ptr->toImageMsg()));
-        pub_message_.publish(*(cv_ptr->toImageMsg()));
+        pub_message_.publish((cv_ptr->toImageMsg()));
 		
 	}
 		
 	
 private:
 	ros::Publisher pub_message_;
-	ros::NodeHandle nh_;
+    ros::NodeHandle nh_;
 	ros::Subscriber sub_;
 };
 
@@ -74,12 +78,27 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "color_calib");
   ros::NodeHandle n;
 
+  //
+  // setup params from ParameterServer and store them in dynamic config
+  //
+  aod::ColorCalibConfig config = aod::ColorCalibConfig::__getDefault__();
+  n.param<bool>("auto_calib", config.auto_calib, false);
+//  n.param<double>("calib_corr_R", config.calib_corr_R, config.calib_corr_R);
+//  n.param<double>("calib_corr_G", config.calib_corr_G, config.calib_corr_G);
+//  n.param<double>("calib_corr_B", config.calib_corr_B, config.calib_corr_B);
+  //
+
   dynamic_reconfigure::Server<aod::ColorCalibConfig> srv;
   dynamic_reconfigure::Server<aod::ColorCalibConfig>::CallbackType f;
 
   ColorCalib colorCalib_;
-  
+
+  n.param<double>("calib_corr_R", config.calib_corr_R, colorCalib_.calib_corr_R);
+  n.param<double>("calib_corr_G", config.calib_corr_G, colorCalib_.calib_corr_G);
+  n.param<double>("calib_corr_B", config.calib_corr_B, colorCalib_.calib_corr_B);
+
   f = boost::bind(&ColorCalib::callback, &colorCalib_, _1, _2);
+  srv.updateConfig(config);//dodane
   srv.setCallback(f);
     
   ros::Rate loop_rate(10);
