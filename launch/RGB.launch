@@ -16,6 +16,12 @@
   
   <!-- Image View RGB -->
   <group ns="/">
+	<node pkg="image_view" name="image_view_rect_rgb" type="image_view">
+		<remap from="image" to="/rod/camera/rgb/image_rect_color" />
+	</node>
+  </group>
+
+  <group ns="/">
 	<node pkg="image_view" name="image_view_rgb" type="image_view">
 		<remap from="image" to="/rod/camera/rgb/image_color" />
 	</node>

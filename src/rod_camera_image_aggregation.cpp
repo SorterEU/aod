@@ -9,7 +9,7 @@ public:
 		sub_color_calib_ = nh_.subscribe("/rod/camera/rgb/image_calibrated_color", 1000, &ImageAggregation::messageCallbackImageCalibratedColor, this);
 		sub_rgb_STFP_= nh_.subscribe("/TF", 1000, &ImageAggregation::messageCallbackTF, this);
 		sub_ir_STFP_= nh_.subscribe("/TF", 1000, &ImageAggregation::messageCallbackTF, this);
-		sub_image_proc_= nh_.subscribe("/rod/camera/ir/image_mono", 1000, &ImageAggregation::messageCallbackImageRectMono, this);
+        sub_image_proc_= nh_.subscribe("/rod/camera/ir/image_rect", 1000, &ImageAggregation::messageCallbackImageRectMono, this);
 		  
 		pub_message_ = nh_.advertise<std_msgs::String>("/rod/analysis/streamIN", 1000);
 	}

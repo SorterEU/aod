@@ -4,8 +4,8 @@
     <include file="$(find img_tools)/launch/sequence_publisher.launch">
 		<arg name="path" value="$(arg sequence_path)" />
 		<arg name="rate" value="0.2" />
-		<arg name="ir_topic" value="/rod/camera/ir/image_mono" />
-		<arg name="color_topic" value="/rod/camera/rgb/image_color" />
+		<arg name="ir_topic" value="/rod/camera/ir/image_rect" />
+		<arg name="color_topic" value="/rod/camera/rgb/image_rect_color" />
 	</include>
 	<include file="$(find aod)/launch/analysis.launch"/>
   </group>
@@ -14,5 +14,11 @@
   <group ns="rod/camera/rgb">
     <node pkg="aod" name="color_calib" type="color_calib"/>
    </group>
+
+<group ns="/">
+	<node pkg="image_view" name="image_view_rgb" type="image_view">
+		<remap from="image" to="/rod/camera/rgb/image_rect_color" />
+	</node>
+  </group>
 
 </launch>

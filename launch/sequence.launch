@@ -4,8 +4,8 @@
     <include file="$(find img_tools)/launch/sequence_publisher.launch">
 		<arg name="path" value="$(arg sequence_path)" />
 		<arg name="rate" value="0.2" />
-		<arg name="ir_topic" value="/rod/camera/ir/image_mono" />
-		<arg name="color_topic" value="/rod/camera/rgb/image_calibrated_color" />
+		<arg name="ir_topic" value="/rod/camera/ir/image_rect" />
+		<arg name="color_topic" value="/rod/camera/rgb/image_rect_color" />
 	</include>
   </group>
 

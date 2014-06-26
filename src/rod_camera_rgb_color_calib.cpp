@@ -10,8 +10,8 @@ public:
     double calib_correction;
     double comp_calib_corr_R, comp_calib_corr_G, comp_calib_corr_B;
     ColorCalib() {
-        sub_=nh_.subscribe("/rod/camera/rgb/image_color", 1, &ColorCalib::messageCallbackImageRectColor, this);
-		pub_message_ = nh_.advertise<sensor_msgs::Image>("/rod/camera/rgb/image_calibrated_color", 1000);
+        sub_=nh_.subscribe("/rod/camera/rgb/image_rect_color", 1, &ColorCalib::messageCallbackImageRectColor, this);
+        pub_message_ = nh_.advertise<sensor_msgs::Image>("/rod/camera/rgb/image_calibrated_color", 1);
 	}
     ~ColorCalib(){}
 	
