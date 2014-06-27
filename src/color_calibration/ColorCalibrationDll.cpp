@@ -18,7 +18,7 @@ using namespace std;
 //template <typename T> string tostr(const T& t) { ostringstream os; os<<t; return os.str(); }
 
 namespace myColorCalib {
-void col_cal_compute( cv::Mat src,cv::Mat& out,double& calib_corr_R,double& calib_corr_G,double& calib_corr_B,bool AutoCalib_On)
+void col_cal_compute( cv::Mat src,double& calib_corr_R,double& calib_corr_G,double& calib_corr_B,bool AutoCalib_On)
 {
   if( AutoCalib_On==true )
     {
@@ -28,7 +28,6 @@ void col_cal_compute( cv::Mat src,cv::Mat& out,double& calib_corr_R,double& cali
         float R_avg, G_avg, B_avg;//mean
         Scalar tempVal;
         cv::Mat ycbcr;
-
 
 //        Rect region_of_interest = Rect(x, y, w, h);
 //        cv::Mat image_roi = image(region_of_interest);
@@ -46,17 +45,9 @@ void col_cal_compute( cv::Mat src,cv::Mat& out,double& calib_corr_R,double& cali
         //// White Patches in YCbCr Color Space
         calib_corr_R =Y_max/R_avg; calib_corr_G = Y_max/G_avg; calib_corr_B = Y_max/B_avg;
 
-/*
-        bgr_picture[2] *= calib_corr_R;
-        bgr_picture[1] *= calib_corr_G;
-        bgr_picture[0] *= calib_corr_B;
-        merge(bgr_picture , out);
-*/
-//        out=src;
     }//~if(AutoCalib_On==1)
   else
     {
-     out=src;
      calib_corr_B=1.0;
      calib_corr_G=1.0;
      calib_corr_R=1.0;

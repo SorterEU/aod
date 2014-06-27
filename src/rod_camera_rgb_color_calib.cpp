@@ -57,7 +57,7 @@ public:
 
         src=cv_ptr->image;
 
-        myColorCalib::col_cal_compute(src, cv_ptr->image, comp_calib_corr_R, comp_calib_corr_G, comp_calib_corr_B, auto_calib);//true);
+        myColorCalib::col_cal_compute(src, comp_calib_corr_R, comp_calib_corr_G, comp_calib_corr_B, auto_calib);//true);
         myColorCalib::col_cal_use(src,cv_ptr->image,calib_corr_R*calib_correction,calib_corr_G*calib_correction,calib_corr_B*calib_correction, auto_calib);//true);
 
         pub_message_.publish((cv_ptr->toImageMsg()));
