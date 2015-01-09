@@ -5,7 +5,11 @@
 		<node pkg="prosilica_camera" name="driver_rgb" type="prosilica_node">
 			<remap from="camera" to="/rod/camera/rgb" />
 			<param name="ip_address" type="str" value="192.168.50.2" />
-		</node>
+			<param name="auto_exposure" type="bool" value="false" />
+			<param name="exposure" type="double" value="0.010" />
+			<param name="auto_gain" type="bool" value="false" />
+			<param name="gain" type="int" value="0" />
+	</node>
 	</group>
 
 
@@ -14,6 +18,10 @@
 		<node pkg="prosilica_camera" name="driver_ir" type="prosilica_node">
 			<remap from="camera" to="/rod/camera/ir" />
 			<param name="ip_address" type="str" value="192.168.51.2" />
+			<param name="auto_exposure" type="bool" value="false" />
+                        <param name="exposure" type="double" value="0.010" />
+                        <param name="auto_gain" type="bool" value="false" />
+                        <param name="gain" type="int" value="0" />
 		</node>
 	</group>
 
@@ -28,18 +36,18 @@
   </group>
   
   <!-- Image View RGB -->
-  <group ns="/">
+  <!--<group ns="/">
 	<node pkg="image_view" name="image_view_rgb" type="image_view">
 		<remap from="image" to="/rod/camera/rgb/image_color" />
 	</node>
-  </group>
+  </group>-->
   
   <!-- Image View IR -->
-  <group ns="/">
+  <!--<group ns="/">
 	<node pkg="image_view" name="image_view_ir" type="image_view">
 		<remap from="image" to="/rod/camera/ir/image_mono" />
 	</node>
-  </group>
+  </group>-->
   
   <!-- Aggregation -->
   <group ns="rod/camera">

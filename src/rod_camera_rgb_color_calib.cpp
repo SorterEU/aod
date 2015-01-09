@@ -28,12 +28,10 @@ public:
         calib_corr_B = config.calib_corr_B;
         auto_calib = config.auto_calib;
         calib_correction = config.calib_correction;
-	  ROS_INFO("Reconfigure request, parameter: %f",
+	  ROS_INFO("Reconfigure request, parameter: %f %f %f",
                config.calib_corr_R,
-               config.calib_corr_R,
-               config.calib_corr_R,
-               config.auto_calib,
-               config.calib_correction);
+               config.calib_corr_G,
+               config.calib_corr_B);
 	}
 
 
